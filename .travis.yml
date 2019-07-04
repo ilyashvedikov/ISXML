@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode10.2
+xcode_project: ISXML.xcodeproj
+xcode_scheme: ISXMLTests
+xcode_destination: platform=iOS Simulator,OS=12.2,name=iPhone 5S
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
