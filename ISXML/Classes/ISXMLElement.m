@@ -13,6 +13,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSString *> *mutableAttributes;
 @property (nonatomic, strong) NSMutableArray <ISXMLElement *> *mutableChildren;
+@property (nonatomic, weak, readwrite, nullable) ISXMLElement *parent;
 
 @end
 
@@ -25,6 +26,7 @@
     {
         self.name = name;
         self.value = nil;
+        self.parent = nil;
         self.mutableAttributes = [@{} mutableCopy];
         self.mutableChildren = [@[] mutableCopy];
     }
@@ -40,6 +42,7 @@
 
 - (void)addChild:(ISXMLElement *)child
 {
+    child.parent = self;
     [self.mutableChildren addObject:child];
 }
 

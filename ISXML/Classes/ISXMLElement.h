@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, nullable) NSString *value;
 @property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> *attributes;
 @property (nonatomic, copy, readonly) NSArray<ISXMLElement *> *children;
+@property (nonatomic, weak, readonly, nullable) ISXMLElement *parent;
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithName:(NSString *)name;

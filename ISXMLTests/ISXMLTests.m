@@ -153,4 +153,20 @@
     XCTAssertEqualObjects(expected, actual.description);
 }
 
+- (void)test_parent_child_relations
+{
+    ISXMLElement *root = [[ISXMLElement alloc] initWithName:@"Root"];
+    
+    ISXMLElement *child =  [[ISXMLElement alloc] initWithName:@"Child"];
+    [root addChild:child];
+    
+    ISXMLElement *childOfChild = [[ISXMLElement alloc] initWithName:@"ChildOfChild"];
+    [child addChild:childOfChild];
+    
+    XCTAssertNil(root.parent);
+    XCTAssertEqual(child.parent, root);
+    XCTAssertEqual(childOfChild.parent, child);
+    XCTAssertEqual(childOfChild.parent.parent, root);
+}
+
 @end
