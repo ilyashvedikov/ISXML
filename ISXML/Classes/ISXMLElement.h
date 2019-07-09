@@ -17,12 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy, readonly) NSArray<ISXMLElement *> *children;
 @property (nonatomic, weak, readonly, nullable) ISXMLElement *parent;
 
+@property (nonatomic, readonly) NSArray<ISXMLElement *> *all;
+
 - (instancetype)init NS_UNAVAILABLE;
 - (nullable instancetype)initWithData:(NSData *)data;
 - (instancetype)initWithName:(NSString *)name;
 - (void)addAttributeWithName:(NSString *)name
                        value:(NSString *)value;
 - (void)addChild:(ISXMLElement *)child;
+
+
+- (nullable instancetype)objectForKeyedSubscript:(NSString *)key;
 
 @end
 
