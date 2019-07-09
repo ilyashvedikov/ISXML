@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F958B2322D4B23A00A4951A /* ISXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F958B2122D4B23A00A4951A /* ISXMLParser.h */; };
+		3F958B2422D4B23A00A4951A /* ISXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F958B2222D4B23A00A4951A /* ISXMLParser.m */; };
 		3FE9C94722C6538D00B99F02 /* ISXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FE9C93D22C6538D00B99F02 /* ISXML.framework */; };
 		3FE9C94C22C6538D00B99F02 /* ISXMLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FE9C94B22C6538D00B99F02 /* ISXMLTests.m */; };
 		3FE9C94E22C6538D00B99F02 /* ISXML.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FE9C94022C6538D00B99F02 /* ISXML.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F958B2122D4B23A00A4951A /* ISXMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISXMLParser.h; sourceTree = "<group>"; };
+		3F958B2222D4B23A00A4951A /* ISXMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISXMLParser.m; sourceTree = "<group>"; };
 		3FE9C93D22C6538D00B99F02 /* ISXML.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ISXML.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE9C94022C6538D00B99F02 /* ISXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ISXML.h; sourceTree = "<group>"; };
 		3FE9C94122C6538D00B99F02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +106,8 @@
 				3FE9C95922C654B300B99F02 /* ISXMLElement.m */,
 				3FE9C96222C66CE600B99F02 /* ISXMLWriter.h */,
 				3FE9C96322C66CE600B99F02 /* ISXMLWriter.m */,
+				3F958B2122D4B23A00A4951A /* ISXMLParser.h */,
+				3F958B2222D4B23A00A4951A /* ISXMLParser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -114,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FE9C95C22C654B400B99F02 /* ISXMLElement.h in Headers */,
+				3F958B2322D4B23A00A4951A /* ISXMLParser.h in Headers */,
 				3FE9C96422C66CE600B99F02 /* ISXMLWriter.h in Headers */,
 				3FE9C94E22C6538D00B99F02 /* ISXML.h in Headers */,
 			);
@@ -218,6 +225,7 @@
 			files = (
 				3FE9C95D22C654B400B99F02 /* ISXMLElement.m in Sources */,
 				3FE9C96522C66CE600B99F02 /* ISXMLWriter.m in Sources */,
+				3F958B2422D4B23A00A4951A /* ISXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

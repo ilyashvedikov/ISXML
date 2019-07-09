@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly, nullable) ISXMLElement *parent;
 
 - (instancetype)init NS_UNAVAILABLE;
+- (nullable instancetype)initWithData:(NSData *)data;
 - (instancetype)initWithName:(NSString *)name;
 - (void)addAttributeWithName:(NSString *)name
                        value:(NSString *)value;

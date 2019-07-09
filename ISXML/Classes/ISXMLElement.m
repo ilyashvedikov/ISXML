@@ -7,6 +7,7 @@
 
 #import "ISXMLElement.h"
 #import "ISXMLWriter.h"
+#import "ISXMLParser.h"
 
 @interface ISXMLElement ()
 
@@ -18,6 +19,12 @@
 @end
 
 @implementation ISXMLElement
+
+- (nullable instancetype)initWithData:(NSData *)data
+{
+    ISXMLParser *parser = [[ISXMLParser alloc] initWithData:data];
+    return [parser parse];
+}
 
 - (instancetype)initWithName:(NSString *)name
 {
