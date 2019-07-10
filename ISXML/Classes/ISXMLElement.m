@@ -7,6 +7,7 @@
 
 #import "ISXMLElement.h"
 #import "ISXMLWriter.h"
+#import "ISXMLParser.h"
 
 @interface ISXMLElement ()
 
@@ -18,6 +19,12 @@
 @end
 
 @implementation ISXMLElement
+
+- (nullable instancetype)initWithData:(NSData *)data
+{
+    ISXMLParser *parser = [[ISXMLParser alloc] initWithData:data];
+    return [parser parse];
+}
 
 - (instancetype)initWithName:(NSString *)name
 {
@@ -57,6 +64,12 @@
     return [self.mutableChildren copy];
 }
 
+- (NSArray <ISXMLElement *> *)all
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", self.name];
+    return [self.parent.children filteredArrayUsingPredicate:predicate];
+}
+
 #pragma mark - description
 
 - (NSString *)description
@@ -64,6 +77,18 @@
     ISXMLWriter *writer = [[ISXMLWriter alloc] initWithElement:self];
     NSString *xmlString = [writer write];
     return xmlString;
+}
+
+- (nullable instancetype)objectForKeyedSubscript:(NSString *)key
+{
+    for (ISXMLElement *child in self.mutableChildren)
+    {
+        if ([child.name isEqualToString:key])
+        {
+            return child;
+        }
+    }
+    return nil;
 }
 
 @end

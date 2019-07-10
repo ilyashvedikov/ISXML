@@ -11,17 +11,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ISXMLElement : NSObject
 
-@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, readonly) NSString *name;
 @property (nonatomic, copy, nullable) NSString *value;
-@property (nonatomic, copy, readonly) NSDictionary<NSString *, NSString *> *attributes;
-@property (nonatomic, copy, readonly) NSArray<ISXMLElement *> *children;
+@property (nonatomic, readonly) NSDictionary<NSString *, NSString *> *attributes;
+@property (nonatomic, readonly) NSArray<ISXMLElement *> *children;
 @property (nonatomic, weak, readonly, nullable) ISXMLElement *parent;
 
+@property (nonatomic, readonly, nullable) NSArray<ISXMLElement *> *all;
+
 - (instancetype)init NS_UNAVAILABLE;
+- (nullable instancetype)initWithData:(NSData *)data;
 - (instancetype)initWithName:(NSString *)name;
 - (void)addAttributeWithName:(NSString *)name
                        value:(NSString *)value;
 - (void)addChild:(ISXMLElement *)child;
+
+
+- (nullable instancetype)objectForKeyedSubscript:(NSString *)key;
 
 @end
 

@@ -169,4 +169,40 @@
     XCTAssertEqual(childOfChild.parent.parent, root);
 }
 
+- (void)test_parse_empty_string
+{
+    NSString *xml = @"";
+    NSData *xmlData = [xml dataUsingEncoding:NSASCIIStringEncoding];
+    ISXMLElement *element = [[ISXMLElement alloc] initWithData:xmlData];
+    
+    XCTAssertNil(element);
+}
+
+- (void)test_parse_invalid_xml
+{
+    NSString *xml = @"<Root><Child>";
+    NSData *xmlData = [xml dataUsingEncoding:NSASCIIStringEncoding];
+    ISXMLElement *element = [[ISXMLElement alloc] initWithData:xmlData];
+    
+    XCTAssertNil(element);
+}
+
+- (void)test_parse_valid_xml
+{
+    NSString *xml = @"<Root><Child att=\"childAtt\"><ChildOfChild>value1</ChildOfChild><ChildOfChild att=\"attVal\">value2</ChildOfChild></Child></Root>";
+    NSData *xmlData = [xml dataUsingEncoding:NSASCIIStringEncoding];
+    ISXMLElement *element = [[ISXMLElement alloc] initWithData:xmlData];
+    XCTAssertEqualObjects(element.name, @"Root");
+    XCTAssertEqualObjects(element[@"Child"].name, @"Child");
+    XCTAssertEqualObjects(element[@"Child"].attributes[@"att"], @"childAtt");
+    XCTAssertNil(element[@"Child"].value);
+    XCTAssertEqualObjects(element[@"Child"].parent, element);
+    XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].value, @"value1");
+    XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].all[0].value, @"value1");
+    XCTAssertEqual(element[@"Child"][@"ChildOfChild"].all.count, 2);
+    XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].all.lastObject.value, @"value2");
+    XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].all.lastObject.attributes[@"att"], @"attVal");
+}
+
+
 @end
