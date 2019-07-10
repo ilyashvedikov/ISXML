@@ -14,6 +14,7 @@
 @property (nonatomic, readwrite) NSError *parseError;
 @property (nonatomic, strong) ISXMLElement *rootElement;
 @property (nonatomic, strong) ISXMLElement *currentElement;
+@property (nonatomic, strong) NSMutableString *foundCharacters;
 
 @end
 
@@ -72,20 +73,23 @@ didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
 {
+    if (self.foundCharacters && ![self.foundCharacters isEqualToString:@""])
+    {
+        self.currentElement.value = [self.foundCharacters copy];
+    }
+    self.foundCharacters = nil;
     self.currentElement  = self.currentElement.parent;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-    NSString *currentValue = self.currentElement.value;
-    if (currentValue)
+    if (self.foundCharacters == nil)
     {
-        self.currentElement.value = [NSString stringWithFormat:@"%@%@", currentValue, string];
+        self.foundCharacters = [@"" mutableCopy];
     }
-    else
-    {
-        self.currentElement.value = string;
-    }
+    NSString *trimmedString = [string stringByTrimmingCharactersInSet:
+                               [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [self.foundCharacters appendString:trimmedString];
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError

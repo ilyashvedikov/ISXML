@@ -189,9 +189,15 @@
 
 - (void)test_parse_valid_xml
 {
-    NSString *xml = @"<Root><Child att=\"childAtt\"><ChildOfChild>value1</ChildOfChild><ChildOfChild att=\"attVal\">value2</ChildOfChild></Child></Root>";
+    NSString *xml = @"<Root>\
+\n\t<Child att=\"childAtt\">\
+\n\t\t<ChildOfChild>value1</ChildOfChild>\
+\n\t\t<ChildOfChild att=\"attVal\">value2</ChildOfChild>\
+\n\t</Child>\
+</Root>";
     NSData *xmlData = [xml dataUsingEncoding:NSASCIIStringEncoding];
     ISXMLElement *element = [[ISXMLElement alloc] initWithData:xmlData];
+    XCTAssertNil(element.value);
     XCTAssertEqualObjects(element.name, @"Root");
     XCTAssertEqualObjects(element[@"Child"].name, @"Child");
     XCTAssertEqualObjects(element[@"Child"].attributes[@"att"], @"childAtt");
@@ -203,6 +209,5 @@
     XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].all.lastObject.value, @"value2");
     XCTAssertEqualObjects(element[@"Child"][@"ChildOfChild"].all.lastObject.attributes[@"att"], @"attVal");
 }
-
 
 @end
