@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
 
   spec.name          = "ISXML"
   spec.version       = "0.1.0"
-  spec.summary       = "ISXML is a class designed to simplify a process of XML generation."
+  spec.summary       = "ISXML is a library designed to deal with XML in a simple way."
   spec.homepage      = "https://github.com/ilyashvedikov/ISXML"
   spec.license       = { :type => "MIT", :file => "LICENSE" }
   spec.author        = { "Ilya Shvedikov" => "i.shvedikov@besmart.by" }
